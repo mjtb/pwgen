@@ -1,0 +1,22 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"outDir": "./lib/",
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"sourceMap": true,
+		"strictNullChecks": true,
+		"module": "commonjs",
+		"target": "es6"
+	},
+	"files": [
+		"index.ts",
+		"main.ts",
+		"category.ts",
+		"constraint.ts",
+		"generator.ts",
+		"generators.ts",
+		"range.ts",
+		"spec/**/*.ts"
+	]
+}
