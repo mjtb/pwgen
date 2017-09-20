@@ -16,7 +16,8 @@
 		"constraint.ts",
 		"generator.ts",
 		"generators.ts",
+		"entropy.ts",
 		"range.ts",
-		"spec/**/*.ts"
+		"spec/**/*[Ss]pec.ts"
 	]
 }

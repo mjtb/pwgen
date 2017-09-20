@@ -8,6 +8,7 @@ import ComplexityConstraint from './constraint';
 import CharRange from './range';
 import Generator from './generator';
 import Generators from './generators';
+import Entropy from './entropy';
 
 export default Generators;
 
@@ -16,6 +17,7 @@ export {
 	Generator,
 	CharRange,
 	ComplexityConstraint,
+	Entropy,
 	UnicodeCategory,
 	unicodeCategoryDescriptionOf,
 	unicodeCategorySymbolOf,

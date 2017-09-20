@@ -6,4 +6,6 @@
  * root for full license text.
  */
 const main = require('../lib/main.js');
-main.main(process.argv.slice(1,process.argv.length - 1));
+main.main(process.argv.slice(1,process.argv.length)).then((rv) => {
+	process.exit(rv);
+});

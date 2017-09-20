@@ -3,15 +3,18 @@
  * permissive (MIT) license. See the LICENSE file at the repository
  * root for full license text.
  */
+import unidata = require('mjtb-unidata');
 
-/** Unicode categories */
+/** Unicode categories
+  * @enum {number}
+  */
 export enum UnicodeCategory {
+	/** Other, Not Assigned (no characters in the file have this property) */
+	Cn = 0,
 	/** Other, Control */
 	Cc,
 	/** Other, Format */
 	Cf,
-	/** Other, Not Assigned (no characters in the file have this property) */
-	Cn,
 	/** Other, Private Use */
 	Co,
 	/** Other, Surrogate */
@@ -293,4 +296,64 @@ export function unicodeCategoryFromSymbol(sym: string): UnicodeCategory | undefi
         case "Zs":
             return UnicodeCategory.Zs;
     }
+}
+
+/** Returns the Unicode category of a character
+  * @param {string|number} c - Unicode character or code point
+  * @return {UnicodeCategory} Unicode category
+  */
+export function unicodeCategoryOf(c: string|number): UnicodeCategory {
+	let n: number;
+	if(typeof(c) === 'string') {
+		n = c.charCodeAt(0);
+	} else {
+		n = c;
+	}
+	let uc: unidata.UnicodeCharacter|null = unidata.instance().get(n);
+	if(uc) {
+		let sym: string|undefined = uc.general;
+		if(typeof(sym) !== 'undefined') {
+			let cat: UnicodeCategory|undefined = unicodeCategoryFromSymbol(sym);
+			if(typeof(cat) !== 'undefined') {
+				return unicodeCategorySimplify(cat);
+			}
+		}
+	}
+	return UnicodeCategory.Cn;
+}
+
+/** Maps a Unicode category to a smaller set comprising Co, Lu, Ll, Po,
+  * No, and So
+  * @param {UnicodeCategory} cat - an arbitrary Unicode category
+  * @return {UnicodeCategory} whichever of Co, Lu, Ll, Po, No, or So is
+  *                           is closest
+  */
+export function unicodeCategorySimplify(cat: UnicodeCategory): UnicodeCategory {
+	switch(cat) {
+		default:
+			return UnicodeCategory.Co;
+		case UnicodeCategory.Lu:
+		case UnicodeCategory.Lt:
+			return UnicodeCategory.Lu;
+		case UnicodeCategory.Ll:
+		case UnicodeCategory.Lo:
+			return UnicodeCategory.Ll;
+		case UnicodeCategory.Pe:
+		case UnicodeCategory.Pc:
+		case UnicodeCategory.Pd:
+		case UnicodeCategory.Pf:
+		case UnicodeCategory.Pi:
+		case UnicodeCategory.Ps:
+		case UnicodeCategory.Po:
+			return UnicodeCategory.Po;
+		case UnicodeCategory.Sc:
+		case UnicodeCategory.Sk:
+		case UnicodeCategory.Sm:
+		case UnicodeCategory.So:
+			return UnicodeCategory.So;
+		case UnicodeCategory.Nd:
+		case UnicodeCategory.Nl:
+		case UnicodeCategory.No:
+			return UnicodeCategory.No;
+	}
 }

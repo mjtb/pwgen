@@ -21,11 +21,11 @@ gulp.task('test', function() {
 gulp.task('doc', function(cb) {
 	gulp.src([
 		'README.md',
+		'lib/category.js',
+		'lib/constraint.js',
+		'lib/generator.js',
 		'lib/generators.js',
-		'lib/category.ts',
-		'lib/constraint.ts',
-		'lib/generator.ts',
-		'lib/generators.ts',
-		'lib/range.ts'
+		'lib/entropy.js',
+		'lib/range.js'
 	], { read: false }).pipe(jsdoc(cb));
 });
