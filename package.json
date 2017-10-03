@@ -2,11 +2,23 @@
   "name": "mjtb-pwgen",
   "version": "1.0.0",
   "description": "Generates pseudo-random passwords",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
 	"build": "gulp default doc",
     "test": "node node_modules/nyc/bin/nyc.js node_modules/jasmine/bin/jasmine.js "
   },
+  "bin": {
+    "pwgen": "./bin/pwgen"
+  },
+  "man": [
+    "./man/pwgen.1"
+  ],
+  "files": [
+    "*.ts",
+    "lib",
+    "bin",
+    "man"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mjtb/pwgen.git"

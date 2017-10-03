@@ -18,11 +18,11 @@ material \(a password seed and a URL\) using the
 
 ## Pre-requisites
 
-*       [Node.js 8.4](https://nodejs.org/en/)
-*       [TypeScript 2.5](https://www.typescriptlang.org/)
-*       [Gulp 1.4](https://gulpjs.com/)
-*       [Jasmine 2.8](https://jasmine.github.io/)
-*       [Istanbul 11.2](https://istanbul.js.org/)
+* [Node.js 8.4](https://nodejs.org/en/)
+* [TypeScript 2.5](https://www.typescriptlang.org/)
+* [Gulp 1.4](https://gulpjs.com/)
+* [Jasmine 2.8](https://jasmine.github.io/)
+* [Istanbul 11.2](https://istanbul.js.org/)
 
 
 ## Build & test
@@ -53,15 +53,15 @@ SYNTAX: pwgen (bits: number = 88,
                       (iters: number = 1000)))))
 
 Generators:
-       Decimal:  265501658910087041542376911
-   Hexadecimal:  A50E25FE148165E9BCDF26
-  Alphanumeric:  ya9xzsgtq2dskrb1f0
-        NCName:  aq9cVbLKGNlF.66
-        QWERTY:  %@F[.*[6RHvK`#
-       Latin-1:  L­ø?Bº÷¹±Äê+
-           LGC:  ;ъoϫĹΜͿȱŖ
-        xml:id:  嶻颩夼䀠】Ə
-       Nmtoken:  삧㱃˱緅荭Ǝ
+       Decimal:  721111398139534322706206830
+   Hexadecimal:  75918E6295010E78B6EEF1
+  Alphanumeric:  7k4hwy82tvb0s3mu40
+        NCName:  XSVY0VeMqcOH3.1
+        QWERTY:  xq}O''cP3/N+r!
+       Latin-1:  pWÆõ«íÔ°'Ï£$
+           LGC:  мnĂƂ·ВȎҖy
+        xml:id:  䤶拫簶蘜䚑ß
+       Nmtoken:  अ鹿Ả囇ቒß
 ```
 
 Running `pwgen` without any arguments will output an 88-bit password
@@ -126,12 +126,13 @@ requirements of a generator by passing the candidate password to the
 generator’s `isAcceptable` method. You can make a candidate password
 acceptable by calling the generator’s `makeAcceptable` method.
 
-This package depends on the [mjtb-unidata](https://www.npmjs.com/package/mjtb-unidata)
-package to provide character to Unicode category lookups. Since
-mjtb-unidata loads the Unicode Character Database asynchronously, callers
-of the mjtb-pwgen APIs should ensure that the `unidata.promise()` method
-exposed by mjtb-unidata has resolved before attempting to use
-the methods of the `Generator` class.
+This package depends on the
+[mjtb-unidata](https://www.npmjs.com/package/mjtb-unidata) package to
+provide character to Unicode category lookups. Since mjtb-unidata loads
+the Unicode Character Database asynchronously, callers of the mjtb-pwgen
+APIs should ensure that the `unidata.instance().promise()` method
+exposed by mjtb-unidata has resolved before attempting to use the
+methods of the `Generator` class.
 
 For example:
 
@@ -139,7 +140,7 @@ For example:
 import pwgen = require('mjtb-pwgen');
 import unidata = require('mjtb-unidata');
 
-unidata.promise().then(() => {
+unidata.instance().promise().then(() => {
 	// print 88 bits of a qwerty password
 	let qwerty: pwgen.Generator = pwgen.Generators.generatorOf('qwerty');
 	console.log(qwerty.generate(pwgen.Entropy.random(88));

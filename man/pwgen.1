@@ -1,0 +1,85 @@
+.TH COLOUR 1
+.SH NAME
+pwgen \- generates pseudo-random passwords
+.SH SYNOPSIS
+.B pwgen
+.I bits: number = 88
+.I generator: string = qwerty
+.I password?: string
+.I site?: string
+.I iters?: number = 1000
+.SH DESCRIPTION
+.B pwgen
+is a command-line interface for generating pseudo-random passwords
+either from a PRNG or derived from a password and website (a salt)
+using the PBKDF2 key derivation algorithm.
+.SH OPTIONS
+.TP
+.IR --help
+.IP
+Print detailed help, including example passwords
+.SH GENERATORS
+.TP
+.BR decimal
+Entropy encoded using the 0-9
+.TP
+.BR hexadecimal
+Entropy encoded using the numbers 0-9 and letters A-F
+.TP
+.BR alphanumeric
+Entropy encoded using the numbers 0-9 and letters a-z.
+Requires at least 1 letter and 1 number.
+.TP
+.BR NCName
+Entropy encoded to conform to the XML NCName production i.e., numbers
+0-9, letters A-Z and a-z, and underscore, hypen-minus and period.
+Requires at least 1 uppercase letter, 1 lowercase letter and 1 number.
+The first character must be a letter or an underscore.
+.TP
+.BR qwerty
+Entropy encoded with the characters ! to ~. Requires 1 uppercase letter,
+1 lowercase letter, 1 number, 1 punctuation and 1 other symbol.
+.BR Latin-1
+Entropy encoded with the characters ! to ~ and U+A0 to U+FF.
+Requires 1 uppercase letter, 1 lowercase letter, 1 number,
+1 punctuation and 1 other symbol.
+.BR LGC
+Entropy encoded with the characters ! to ~ plus any other character
+coded in the Latin, Greek or Cyrillic scripts. Requires 1 uppercase
+letter, 1 lowercase letter, 1 number, 1 punctuation and 1 other
+symbol.
+.BR xml:id
+Entropy encoded to conform to the XML Identifier specification, which
+is similar to NCName but with a much larger character set encompassing
+all of the Unicode BMP.
+.BR Nmtoken
+Entropy encoded to conform to the XML Nmtoken production, which is
+similar to NCName but with a much larger character set and fewer
+complexity constraints.
+.SH EXIT STATUS
+.TP
+.BR 0
+The program ran to completion.
+.SH EXAMPLE
+The following example shows the default syntax help:
+.P
+.B pwgen --help
+.P
+.BD
+SYNTAX: pwgen (bits: number = 88,
+                (generator: string = qwerty,
+                  (password?: string,
+                    (site?: string,
+                      (iters: number = 1000)))))
+
+Generators:
+       Decimal:  721111398139534322706206830
+   Hexadecimal:  75918E6295010E78B6EEF1
+  Alphanumeric:  7k4hwy82tvb0s3mu40
+        NCName:  XSVY0VeMqcOH3.1
+        QWERTY:  xq}O''cP3/N+r!
+       Latin-1:  pWÆõ«íÔ°'Ï£$
+           LGC:  мnĂƂ·ВȎҖy
+        xml:id:  䤶拫簶蘜䚑ß
+       Nmtoken:  अ鹿Ả囇ቒß
+.ED
