@@ -1,6 +1,6 @@
 {
   "name": "mjtb-pwgen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates pseudo-random passwords",
   "main": "lib/index.js",
   "scripts": {
