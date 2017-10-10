@@ -1,0 +1,2 @@
+bin/pwgen text eol=lf
+man/pwgen.1 text eol=lf
