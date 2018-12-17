@@ -15,7 +15,7 @@ export default class Entropy {
 	  * @returns {Uint8Array} entropy
 	  */
 	public static random(bits: number): Uint8Array {
-		let buf: Uint8Array = new Uint8Array(new ArrayBuffer((bits + 7) / 8));
+		let buf: Uint8Array = new Uint8Array(new ArrayBuffer(Math.trunc((bits + 7) / 8)));
 		crypto.randomFillSync(buf);
 		return buf;
 	}
@@ -31,7 +31,7 @@ export default class Entropy {
 	  * @returns {Uint8Array} entropy
 	  */
 	public static pbkdf2(bits: number, password: string, salt: string, iters: number): Uint8Array {
-		return new Uint8Array(crypto.pbkdf2Sync(password, salt, iters, (bits + 7) / 8, 'sha1'));
+		return new Uint8Array(crypto.pbkdf2Sync(password, salt, iters, Math.trunc((bits + 7) / 8), 'sha1'));
 	}
 
 	/** Gets a buffer containing pseudo-random password entropy bytes
