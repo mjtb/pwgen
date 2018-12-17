@@ -4,7 +4,7 @@
   "description": "Generates pseudo-random passwords",
   "main": "lib/index.js",
   "scripts": {
-	"build": "gulp default doc",
+    "build": "gulp default doc",
     "test": "node node_modules/nyc/bin/nyc.js node_modules/jasmine/bin/jasmine.js "
   },
   "bin": {
@@ -35,18 +35,18 @@
   },
   "homepage": "https://github.com/mjtb/pwgen#readme",
   "devDependencies": {
-    "@types/jasmine": "^2.6.0",
-    "@types/node": "^8.0.28",
-    "gulp": "^3.9.1",
+    "@types/jasmine": "^2.8.12",
+    "@types/node": "^8.10.38",
+    "gulp": "^4.0.0",
     "gulp-jasmine": "^2.4.2",
-    "gulp-jsdoc3": "^1.0.1",
-    "gulp-typescript": "^3.2.2",
-    "jasmine": "^2.8.0",
-    "nyc": "^11.2.1",
-    "typescript": "^2.5.2"
+    "gulp-jsdoc3": "^2.0.0",
+    "gulp-typescript": "^3.2.4",
+    "jasmine": "^2.99.0",
+    "nyc": "^11.9.0",
+    "typescript": "^2.9.2"
   },
   "dependencies": {
-    "big-integer": "^1.6.25",
-    "mjtb-unidata": "^2.0.0"
+    "big-integer": "^1.6.40",
+    "mjtb-unidata": "^2.0.2"
   }
 }
